@@ -35,6 +35,7 @@ fn vendor(path: &str, branches: &[String]) -> Result<(), ShellError> {
     my_bash! {"
         mkdir -p .cargo
         git checkout {first_branch}
+        git pull
         cargo vendor --versioned-dirs 1> .cargo/{first_branch}.config.toml
         cp .cargo/{first_branch}.config.toml .cargo/config.toml
     "}?;
