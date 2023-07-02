@@ -154,7 +154,7 @@ fn find_file_up(start_directory: &Path, name: &str) -> Result<PathBuf, ConfigErr
 fn parse_config_file(toml_string: &str) -> Result<ConfigFile, ConfigError> {
     let table = toml_string.parse::<Table>()?;
     Ok(ConfigFile {
-        header: toml::from_str(&toml_string)?,
+        header: toml::from_str(toml_string)?,
         repos: table
             .into_iter()
             .filter_map(|(name, item)| match item {
