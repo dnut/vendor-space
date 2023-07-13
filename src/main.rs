@@ -35,7 +35,7 @@ fn get_code(path: &str, url: &str, allow_existing: bool) -> Result<(), Repositor
             {
                 return Err(RepositoryError::InvalidGitRepo(path.into()));
             }
-            safe_bash!("git diff-index --quiet HEAD --")
+            safe_bash!("cd {path} && git diff-index --quiet HEAD --")
                 .play()
                 .map_err(|_| RepositoryError::DirtyWorkingTree(path.into()))
         } else {
